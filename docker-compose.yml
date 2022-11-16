@@ -1,0 +1,80 @@
+version: '3.1'
+
+services:
+
+  adminer:
+    image: adminer
+    restart: on-failure
+    ports:
+      - 8080:8080
+
+
+
+  db:
+    image: postgres
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    restart: on-failure
+    environment:
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "exemple"
+    ports:
+      - 5432:5432
+
+
+  web:
+    build: 
+      context: ./site_transaction
+      dockerfile: Dockerfile
+    command: >
+      sh -c "python manage.py migrate
+             python manage.py runserver 0.0.0.0:8000"
+    volumes:
+      - ./site_transaction/:/usr/src/app/
+
+    ports:
+      - 8000:8000
+    env_file:
+      - ./site_transaction/.env
+    depends_on:
+      - db
+
+
+  supervisor:
+    build:
+      context: ./site_transaction
+      dockerfile: Dockerfile_supervisor
+
+    volumes:
+      - ./site_transaction/:/usr/src/app/
+      - ./supervisor/supervisord.conf:/etc/supervisor/supervisord.conf
+      - ./supervisor/conf.d/:/etc/supervisor/conf.d/
+
+    ports:
+      - 8001:8001
+
+    env_file:
+      - ./site_transaction/.env
+
+    depends_on:
+      - web
+ 
+  nginx:
+    build:
+      context:  ./nginx
+      dockerfile: Dockerfile_nginx
+    ports:
+      - 1337:80
+    depends_on:
+      - web
+
+
+
+  redis:
+    image: redis
+    restart: on-failure
+    ports:
+      - 6379:6379
+
+volumes:
+  postgres_data:

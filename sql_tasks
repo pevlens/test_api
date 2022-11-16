@@ -1,0 +1,18 @@
+-----------------------------task 1--------------------------------------------------
+
+select count(notebooks_notebook.brand_id) AS count_name, notebooks_brand.title
+from  notebooks_notebook JOIN notebooks_brand
+ON  notebooks_notebook.brand_id = notebooks_brand.id
+GROUP BY notebooks_brand.title
+ORDER BY count_name DESC 
+-----------------------------task 1--------------------------------------------------
+
+-----------------------------task 2--------------------------------------------------
+select ceil(width/5)*5 as width_n, ceil(depth/5)*5 as depth_n,ceil(height/5)*5 as height_n,  
+count(*) as count 
+from notebooks_notebook 
+GROUP BY width_n, depth_n, height_n 
+order by width_n, depth_n, height_n
+
+-----------------------------task 2--------------------------------------------------
+
