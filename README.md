@@ -51,7 +51,8 @@ _________Использование API__________________________________
 Просмотр баланса 
 (GET) link -  http://adress:1337/api/balance/ data(name, value) head(token)
 
-Фидьтрация и сортировка Транзакций: 
+Фидьтрация и сортировка Транзакций:
+
 (GET) link - http://adress:1337/api/transactions(category)?ordering=по чем сортировать,   data(name, value) head(token)
 
 (GET) link - GET /api/transactions/?summ=&time_after=14:50&time_before=21:00&date_after=2022-11-07&date_before=2022-11-16&summ_min=&summ_max=   data(name, value) head(token)
