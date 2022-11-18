@@ -32,25 +32,25 @@ _________Использование API__________________________________
 (POST) link - http://adress:1337/auth/token/login, data(username, password) response(token)
 
 Добовление новой категории 
-(POST) link - http://adress:1337/category/ date(name) head(token) 
+(POST) link - http://adress:1337/api/category/ data(name, value) head(token) 
 
 Добовление новой транзакции
-(POST) link - http://adress:1337/transactions/ date(name) head(token)
+(POST) link - http://adress:1337/api/transactions/ data(name, value) head(token)
 при добовлении суммы включающуюю категорию расходов добовляйте отрицательный знак перед при указании summ
 
 Изменение удаление просмотр категории, транзакции
-(PUT, DELETE, GET) link - http://adress:1337/transactions(category)/id_category(id_transactions)/ date(name) head(token)
+(PUT, DELETE, GET) link - http://adress:1337/api/transactions(category)/id_category(id_transactions)/ data(name, value) head(token)
 
 Просмотр транзакций или категорй
-(GET) link - http://adress:1337/transactions(category)/ date(name) head(token)
+(GET) link - http://adress:1337/api/transactions(category)/ data(name, value) head(token)
 
 Просмотр баланса 
-(GET) link -  http://adress:1337/balance/ date(name) head(token)
+(GET) link -  http://adress:1337/api/balance/ data(name, value) head(token)
 
 Фидьтрация и сортировка Транзакций: 
-(GET) link - http://adress:1337/transactions(category)?ordering=по чем сортировать,   date(name) head(token)
+(GET) link - http://adress:1337/api/transactions(category)?ordering=по чем сортировать,   data(name, value) head(token)
 
-(GET) link - GET /api/transactions/?summ=&time_after=14:50&time_before=21:00&date_after=2022-11-07&date_before=2022-11-16&summ_min=&summ_max=   date(name) head(token)
+(GET) link - GET /api/transactions/?summ=&time_after=14:50&time_before=21:00&date_after=2022-11-07&date_before=2022-11-16&summ_min=&summ_max=   data(name, value) head(token)
 
 
 _____________________________________________________________________________________________________________________________
