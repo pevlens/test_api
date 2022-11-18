@@ -26,9 +26,13 @@ _______________RUN API____________________
 	docker-compouse exec web python manage.py createsuperuser
 
 _________Использование API__________________________________
+
 Регестрация пользователя:
+
 (POST) link - http://adress:1337/api/auth/users/, data(username, email, password)
+
 Авторизация 
+
 (POST) link - http://adress:1337/auth/token/login, data(username, password) response(token)
 
 Добовление новой категории 
